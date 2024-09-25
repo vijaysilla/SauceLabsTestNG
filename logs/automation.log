@@ -1,0 +1,8 @@
+10:06:22.342 [main] INFO  utilities.Log4jLoggers - ********************************************************************************************
+10:06:22.344 [main] INFO  utilities.Log4jLoggers - ************************* simple webdriver open ********************************************
+10:06:22.344 [main] INFO  utilities.Log4jLoggers - ********************************-S-T-A-R-T**************************************************
+10:06:22.355 [main] INFO  utilities.Log4jLoggers - chrome driver initialized
+10:06:25.876 [main] INFO  utilities.Log4jLoggers - saudemo url opened
+10:06:26.622 [main] INFO  utilities.Log4jLoggers - chrome browser closed
+10:06:26.622 [main] INFO  utilities.Log4jLoggers - ********************************************************************************************
+10:06:26.622 [main] INFO  utilities.Log4jLoggers - **********************************-E-N-D-***************************************************
