@@ -19,8 +19,7 @@ public class LoginPage
 	@FindBy(id="login-button")
 	private WebElement logButton;
 	
-	@FindBy(xpath="//h3[@data-test='error']")
-	private WebElement errorMsg;
+	private By errorMsg;
 	
 	public LoginPage(WebDriver driver)
 	{
@@ -42,7 +41,15 @@ public class LoginPage
 	}
 	public boolean getErrorMessageExistence()
 	{	
-		return errorMsg.isDisplayed();
+		errorMsg = By.xpath("//h3[@data-test='error']");
+		try
+		{
+			return driver.findElement(errorMsg).isDisplayed();
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
 	}
 	
 }

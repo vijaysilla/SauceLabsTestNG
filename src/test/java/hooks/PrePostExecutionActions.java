@@ -15,9 +15,9 @@ public class PrePostExecutionActions
 	}
 	
 	@Before
-	public void preExecutionSetup()
+	public void preExecutionSetup(Scenario scenario)
 	{
-		Log4jLoggers.getLogInstance().startTestCase(null);
+		Log4jLoggers.getLogInstance().startTestCase(scenario.getName());
 	}
 	
 	@After(order=1)

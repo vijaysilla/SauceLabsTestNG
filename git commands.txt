@@ -1,0 +1,6 @@
+git init
+git add -A    -> to add all files from your current folder (where you open bash)
+git commit -m "first comment"
+git branch -M main
+git remote add origin https://github.com/vijaysilla/SauceLabsTestNG.git     (copy this from git repo path-> code)
+git push -u origin main
