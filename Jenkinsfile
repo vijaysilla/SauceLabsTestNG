@@ -9,7 +9,7 @@ pipeline {
         stage('Checkout') {
             steps {
                     echo "Checking out the repository..."
-                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/vijaysilla/SauceLabsTestNG.git']])
+                    git 'https://github.com/vijaysilla/SauceLabsTestNG.git'
             }
         }
 
