@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    tools {
-        maven "MAVEN_HOME" // Ensure this matches your Maven tool installation in Jenkins
-    }
+    // tools {
+    //     maven "MAVEN_HOME" // Ensure this matches your Maven tool installation in Jenkins
+    // }
 
     stages {
         stage('Checkout') {
