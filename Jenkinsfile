@@ -17,15 +17,15 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo "Installing dependencies..."
-                // sh "mvn clean install -X || true" // Enable Maven debugging and continue on error
-                sh "mvn test" // Enable Maven debugging and continue on error
+                sh "mvn clean install -X || true" // Enable Maven debugging and continue on error                
             }
         }
 
         stage('Run Tests') {
             steps {
                 echo "Running Cucumber BDD tests using Maven..."
-                sh "mvn -X test || true" // Enable Maven debugging output and continue on error
+                // sh "mvn -X test || true" // Enable Maven debugging output and continue on error
+                sh "mvn test"
             }
         }
     }
