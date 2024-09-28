@@ -17,7 +17,8 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo "Installing dependencies..."
-                sh "mvn clean install -X || true" // Enable Maven debugging and continue on error
+                // sh "mvn clean install -X || true" // Enable Maven debugging and continue on error
+                sh "mvn test" // Enable Maven debugging and continue on error
             }
         }
 
