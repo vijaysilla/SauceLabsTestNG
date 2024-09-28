@@ -9,7 +9,7 @@ pipeline {
         stage('Checkout') {
             steps {
                     echo "Checking out the repository..."
-                    git 'https://github.com/vijaysilla/SauceLabsTestNG.git'
+                    git branch: 'main', url: 'https://github.com/vijaysilla/SauceLabsTestNG.git'
                     sh 'ls -la'
             }
         }
