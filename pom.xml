@@ -80,11 +80,11 @@
 			<artifactId>extentreports-cucumber7-adapter</artifactId>
 			<version>1.14.0</version>
 		</dependency>
-		<dependency>
+<!-- 		<dependency>
 		    <groupId>com.aventstack</groupId>
 		    <artifactId>extentreports</artifactId>
     		<version>5.0.9</version> <!-- Check for the latest version -->
-		</dependency>
+		</dependency> -->
 		<!--  https://mvnrepository.com/artifact/io.cucumber/cucumber-junit  
 		<dependency>
 			<groupId>io.cucumber</groupId>
