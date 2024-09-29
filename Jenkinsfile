@@ -10,14 +10,14 @@ pipeline {
             steps {
                     echo "Checking out the repository..."
                     git branch: 'main', url: 'https://github.com/vijaysilla/SauceLabsTestNG.git'
-                    sh 'ls -la'
+                    bat 'ls -la'
             }
         }
 
         stage('Install Dependencies') {
             steps {
                 echo "Installing dependencies..."
-                sh "mvn clean install -X" // Enable Maven debugging and continue on error                
+                bat "mvn clean install -X" // Enable Maven debugging and continue on error                
             }
         }
 
@@ -25,7 +25,7 @@ pipeline {
             steps {
                 echo "Running Cucumber BDD tests using Maven..."
                 // sh "mvn -X test || true" // Enable Maven debugging output and continue on error
-                sh "mvn test"
+                bat "mvn test"
             }
         }
     }
