@@ -34,9 +34,9 @@ pipeline {
             echo "Archiving test reports..."
             junit '**/test-output/junitreports/surefire-reports/*.xml'
             cucumber fileIncludePattern: '**/test-output/junitreports/surefire-reports/cucumber.json'
-            archiveArtifacts artifacts: '**/test-output/reports/*/sauce_sparkReport.html', allowEmptyArchive: true
-            archiveArtifacts artifacts: '**/test-output/reports/*/sauce_HTMLReport.html', allowEmptyArchive: true
-            archiveArtifacts artifacts: '**/test-output/reports/*/sauce_PDFReport.pdf', allowEmptyArchive: true
+            // archiveArtifacts artifacts: '**/test-output/reports/*/sauce_sparkReport.html', allowEmptyArchive: true
+            // archiveArtifacts artifacts: '**/test-output/reports/*/sauce_HTMLReport.html', allowEmptyArchive: true
+            // archiveArtifacts artifacts: '**/test-output/reports/*/sauce_PDFReport.pdf', allowEmptyArchive: true
             cleanWs() // Clean workspace after everything else
         }
         success {
