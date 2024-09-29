@@ -108,7 +108,7 @@
 	        <artifactId>maven-surefire-plugin</artifactId>
 	        <version>3.5.0</version>
 	        <configuration>
-		        <parallel>none</parallel>
+		        <parallel>methods</parallel>
 		        <useUnlimitedThreads>true</useUnlimitedThreads>		        
 	    	</configuration>
 	      </plugin>
