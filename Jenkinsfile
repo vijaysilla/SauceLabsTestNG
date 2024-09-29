@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    // tools {
-    //     maven "MAVEN_HOME" // Ensure this matches your Maven tool installation in Jenkins
-    // }
+    tools {
+        maven "MAVEN_HOME" // Ensure this matches your Maven tool installation in Jenkins
+    }
 
     stages {
         stage('Checkout') {
@@ -24,7 +24,6 @@ pipeline {
         stage('Run Tests') {
             steps {
                 echo "Running Cucumber BDD tests using Maven..."
-                // sh "mvn -X test || true" // Enable Maven debugging output and continue on error
                 bat "mvn test"
             }
         }
@@ -35,10 +34,10 @@ pipeline {
             echo "Archiving test reports..."
             junit '**/test-output/junitreports/surefire-reports/*.xml'
             cucumber fileIncludePattern: '**/test-output/junitreports/surefire-reports/cucumber.json'
-            archiveArtifacts artifacts: '**/test-output/reports/*/sauce_sparkReport.html', allowEmptyArchive: true
-            archiveArtifacts artifacts: '**/test-output/reports/*/sauce_HTMLReport.html', allowEmptyArchive: true
-            archiveArtifacts artifacts: '**/test-output/reports/*/sauce_PDFReport.pdf', allowEmptyArchive: true
-            cleanWs() // Clean workspace after everything else
+            // archiveArtifacts artifacts: '**/test-output/reports/*/sauce_sparkReport.html', allowEmptyArchive: true
+            // archiveArtifacts artifacts: '**/test-output/reports/*/sauce_HTMLReport.html', allowEmptyArchive: true
+            // archiveArtifacts artifacts: '**/test-output/reports/*/sauce_PDFReport.pdf', allowEmptyArchive: true
+            // cleanWs() // Clean workspace after everything else
         }
         success {
             echo 'Tests completed successfully.'
