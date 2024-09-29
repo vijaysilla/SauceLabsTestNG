@@ -50,6 +50,5 @@ public class LoginPage
 		{
 			return false;
 		}
-	}
-	
+	}	
 }
