@@ -24,7 +24,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 echo "Running Cucumber BDD tests using Maven..."
-                bat "mvn test"
+                bat "mvn clean test"
             }
         }
     }
