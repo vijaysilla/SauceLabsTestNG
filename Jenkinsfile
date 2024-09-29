@@ -10,14 +10,14 @@ pipeline {
             steps {
                     echo "Checking out the repository..."
                     git branch: 'main', url: 'https://github.com/vijaysilla/SauceLabsTestNG.git'
-                    bat 'ls -la'
+                    bat 'dir'
             }
         }
 
         stage('Install Dependencies') {
             steps {
                 echo "Installing dependencies..."
-                bat "mvn clean install -X" // Enable Maven debugging and continue on error                
+                bat "mvn clean install" // Enable Maven debugging and continue on error                
             }
         }
 
@@ -33,7 +33,7 @@ pipeline {
     post {
         always {
             echo "Archiving test reports..."
-            junit '**/target/surefire-reports/*.xml'
+            // junit '**/target/surefire-reports/*.xml'
             cucumber fileIncludePattern: '**/target/cucumber.json'
             archiveArtifacts artifacts: '**/test-output/reports/*/sauce_sparkReport.html', allowEmptyArchive: true
             archiveArtifacts artifacts: '**/test-output/reports/*/sauce_HTMLReport.html', allowEmptyArchive: true
