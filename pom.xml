@@ -121,6 +121,7 @@
 	        <artifactId>maven-surefire-plugin</artifactId>
 	        <version>3.5.0</version>
 	        <configuration>
+			<argLine>--add-opens jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</argLine>
 		        <parallel>methods</parallel>
 		        <useUnlimitedThreads>true</useUnlimitedThreads>		        
 	    	</configuration>
