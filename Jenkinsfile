@@ -27,18 +27,18 @@ pipeline {
                 bat "mvn clean test -e -X"
             }
         }
-        stage('Publish Extent Reports') 
-        {
-            steps 
-            {
-                publishHTML([allowMissing: false, 
-                    alwaysLinkToLastBuild: true, 
-                    keepAll: true, 
-                    reportDir: 'test-output/reports', // Directory where Extent Reports are generated
-                    reportFiles: 'sauce_sparkReport.html', // The main Extent report file
-                    reportName: 'Extent Test Report'])
-            }
-        }
+        // stage('Publish Extent Reports') 
+        // {
+        //     steps 
+        //     {
+        //         publishHTML([allowMissing: false, 
+        //             alwaysLinkToLastBuild: true, 
+        //             keepAll: true, 
+        //             reportDir: 'test-output/reports', // Directory where Extent Reports are generated
+        //             reportFiles: 'sauce_sparkReport.html', // The main Extent report file
+        //             reportName: 'Extent Test Report'])
+        //     }
+        // }
     }
 
     post {
