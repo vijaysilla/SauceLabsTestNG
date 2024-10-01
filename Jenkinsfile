@@ -27,6 +27,18 @@ pipeline {
                 bat "mvn clean test -e -X"
             }
         }
+        stage('Publish Extent Reports') 
+        {
+            steps 
+            {
+                publishHTML([allowMissing: false, 
+                    alwaysLinkToLastBuild: true, 
+                    keepAll: true, 
+                    reportDir: 'test-output/reports', // Directory where Extent Reports are generated
+                    reportFiles: 'sauce_sparkReport.html', // The main Extent report file
+                    reportName: 'Extent Test Report'])
+            }
+        }
     }
 
     post {
@@ -34,9 +46,9 @@ pipeline {
             echo "Archiving test reports..."
             junit '**/test-output/junitreports/surefire-reports/*.xml'
             cucumber fileIncludePattern: '**/test-output/junitreports/surefire-reports/cucumber.json'
-            archiveArtifacts artifacts: '**/test-output/reports/sauce_sparkReport1.html', allowEmptyArchive: true
-            archiveArtifacts artifacts: '**/test-output/reports/sauce_HTMLReport1.html', allowEmptyArchive: true
-            archiveArtifacts artifacts: '**/test-output/reports/sauce_PDFReport1.pdf', allowEmptyArchive: true
+            // archiveArtifacts artifacts: '**/test-output/reports/sauce_sparkReport1.html', allowEmptyArchive: true
+            // archiveArtifacts artifacts: '**/test-output/reports/sauce_HTMLReport1.html', allowEmptyArchive: true
+            // archiveArtifacts artifacts: '**/test-output/reports/sauce_PDFReport1.pdf', allowEmptyArchive: true
             cleanWs() // Clean workspace after everything else
         }
         success {
