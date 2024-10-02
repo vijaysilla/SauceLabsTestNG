@@ -14,13 +14,13 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                echo "Installing dependencies..."
-                // bat "mvn clean install -e -X" // Enable Maven debugging and continue on error 
-                bat "mvn clean install" // Enable Maven debugging and continue on error 
-            }
-        }
+        // stage('Install Dependencies') {
+        //     steps {
+        //         echo "Installing dependencies..."
+        //         // bat "mvn clean install -e -X" // Enable Maven debugging and continue on error 
+        //         bat "mvn clean install" // Enable Maven debugging and continue on error 
+        //     }
+        // }
 
         stage('Run Tests') {
             steps {
