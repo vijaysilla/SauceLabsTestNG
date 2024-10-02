@@ -51,7 +51,7 @@ pipeline {
             // archiveArtifacts artifacts: '**/test-output/reports/sauce_sparkReport1.html', allowEmptyArchive: true
             // archiveArtifacts artifacts: '**/test-output/reports/sauce_HTMLReport1.html', allowEmptyArchive: true
             // archiveArtifacts artifacts: '**/test-output/reports/sauce_PDFReport1.pdf', allowEmptyArchive: true
-            cleanWs() // Clean workspace after everything else
+            // cleanWs() // Clean workspace after everything else
         }
         success {
             echo 'Tests completed successfully.'
