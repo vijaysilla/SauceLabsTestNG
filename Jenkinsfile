@@ -34,8 +34,8 @@ pipeline {
                 publishHTML([allowMissing: false, 
                     alwaysLinkToLastBuild: true, 
                     keepAll: true, 
-                    reportDir: 'test-output/reports', // Directory where Extent Reports are generated
-                    reportFiles: 'sparkReport.html', // The main Extent report file
+                    // reportDir: 'test-output/reports', // Directory where Extent Reports are generated
+                    // reportFiles: 'sparkReport.html', // The main Extent report file
                     reportName: 'Extent Test Report'])
             }
         }
