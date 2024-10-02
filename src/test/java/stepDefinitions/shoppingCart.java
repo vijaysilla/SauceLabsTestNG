@@ -6,6 +6,7 @@ import org.testng.Assert;
 import io.cucumber.java.en.*;
 import pageObjects.LoginPage;
 import pageObjects.SwagLabsHomePage;
+import utilities.Log4jLoggers;
 import utilities.TestContext;
 
 public class shoppingCart 
@@ -14,6 +15,7 @@ public class shoppingCart
 	public TestContext testContext;
 	public LoginPage loginPage;
 	public SwagLabsHomePage homePage;
+	public Log4jLoggers log = Log4jLoggers.getLogInstance();
 	
 	public shoppingCart(TestContext testContext)
 	{
@@ -27,11 +29,13 @@ public class shoppingCart
 			loginPage = testContext.getPageManagerObject().getLoginPageObject();
 		loginPage.insertUserName(uname);
 		loginPage.insertPassword(pwd);
-		loginPage.clickLoginButton();
+		loginPage.clickLoginButton();		
 		if (loginPage.getErrorMessageExistence())
 		{
-			Assert.fail("Login failed due to wrong credentials - "+uname+" and "+pwd);
+			log.info("Login failed due to wrong credentials - "+uname+" and "+pwd);
+			Assert.fail("Login failed due to wrong credentials - "+uname+" and "+pwd);			
 		}
+		log.info("Sauce lab application login successfully done");
 	}
 
 	@Given("User at home page or not")
