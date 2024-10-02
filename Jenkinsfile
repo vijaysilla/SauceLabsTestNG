@@ -35,7 +35,7 @@ pipeline {
                     alwaysLinkToLastBuild: true, 
                     keepAll: true, 
                     reportDir: 'test-output/reports', // Directory where Extent Reports are generated
-                    reportFiles: 'sauce_sparkReport.html', // The main Extent report file
+                    reportFiles: 'sparkReport.html', // The main Extent report file
                     reportName: 'Extent Test Report'])
             }
         }
