@@ -46,8 +46,8 @@ pipeline {
     post {
         always {
             echo "Archiving test reports..."
-            junit '**/test-output/junitreports/surefire-reports/*.xml'
-            cucumber fileIncludePattern: '**/test-output/junitreports/surefire-reports/cucumber.json'
+            junit 'test-output/junitreports/surefire-reports/*.xml'
+            cucumber fileIncludePattern: 'test-output/junitreports/surefire-reports/cucumber.json'
             // archiveArtifacts artifacts: '**/test-output/reports/sauce_sparkReport1.html', allowEmptyArchive: true
             // archiveArtifacts artifacts: '**/test-output/reports/sauce_HTMLReport1.html', allowEmptyArchive: true
             // archiveArtifacts artifacts: '**/test-output/reports/sauce_PDFReport1.pdf', allowEmptyArchive: true
