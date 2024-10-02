@@ -33,6 +33,7 @@ public class PrePostExecutionActions
 	@After(order=0)
 	public void tearDown()
 	{
+		Log4jLoggers.getLogInstance().endTestCase();
 		if (testContext.getWebDriverManagerObject().getWebDriver() != null)
 			testContext.getWebDriverManagerObject().getWebDriver().close();
 	}
