@@ -28,7 +28,7 @@ pipeline {
                 // bat "mvn clean test -e -X"
                 bat "mvn clean test"
             }
-        // }
+        }
         // stage('Publish Extent Reports') 
         // {
         //     steps 
