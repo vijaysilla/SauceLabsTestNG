@@ -54,7 +54,8 @@ pipeline {
             archiveArtifacts artifacts: 'test-output/reports/*/sauce_PDFReport.pdf', allowEmptyArchive: true
             // cleanWs() // Clean workspace after everything else
     
-            script {
+            script 
+            {
                 def webexApiUrl = "https://webexapis.com/v1/messages"
                 def accessToken = "OWQyZDQ0YjEtYzkyMC00NWNlLWFlY2EtZjk1MDg0OGM2MGQzOTVkMzJlODQtYTc0_P0A1_149711dc-58c8-4cd6-9e66-384c51eeff08"
                 def roomId = "Y2lzY29zcGFyazovL3VybjpURUFNOnVzLXdlc3QtMl9yL1JPT00vZDIyMDBhYTAtODE0MC0xMWVmLThlNjMtNzE1MGI4NzUxMjQ5"
@@ -76,10 +77,12 @@ pipeline {
                 """
             }              
         }
-        success {
+        success 
+        {
             echo 'Tests completed successfully.'
         }
-        failure {
+        failure 
+        {
             echo 'Tests failed! Check the reports for details.'
         }
     }
