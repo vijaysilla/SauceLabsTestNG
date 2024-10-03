@@ -43,9 +43,9 @@ pipeline {
         }
     }
 
-    post {
-        always 
-        {
+    post 
+    {
+        always {
             echo "Archiving test reports..."
             // junit 'test-output/junitreports/surefire-reports/*.xml'
             cucumber fileIncludePattern: 'target/cucumber.json'
@@ -53,16 +53,15 @@ pipeline {
             archiveArtifacts artifacts: 'test-output/reports/*/sauce_HTMLReport.html', allowEmptyArchive: true
             archiveArtifacts artifacts: 'test-output/reports/*/sauce_PDFReport.pdf', allowEmptyArchive: true
             // cleanWs() // Clean workspace after everything else
-
-                script 
-                {
+    
+            script {
                 def webexApiUrl = "https://webexapis.com/v1/messages"
                 def accessToken = "OWQyZDQ0YjEtYzkyMC00NWNlLWFlY2EtZjk1MDg0OGM2MGQzOTVkMzJlODQtYTc0_P0A1_149711dc-58c8-4cd6-9e66-384c51eeff08"
                 def roomId = "Y2lzY29zcGFyazovL3VybjpURUFNOnVzLXdlc3QtMl9yL1JPT00vZDIyMDBhYTAtODE0MC0xMWVmLThlNjMtNzE1MGI4NzUxMjQ5"
                 def testReportUrl = "${env.BUILD_URL}/testReport"
                 def buildStatus = currentBuild.result ?: 'SUCCESS'
                 def testResult = buildStatus == 'FAILURE' ? 'Some tests failed.' : 'All tests passed.'
-
+    
                 // Create JSON payload - POST request format sending to webex api
                 def jsonPayload = """
                 {
@@ -73,17 +72,16 @@ pipeline {
     
                 // Use PowerShell to send the HTTP request
                 bat """
-                powershell -Command "Invoke-RestMethod -Uri '${webexApiUrl}' -Method POST -Headers @{'Authorization'='Bearer ${accessToken}'; 'Content-Type'='application/json'} -Body '${jsonPayload}'"
+                powershell -Command "Invoke-RestMethod -Uri '${webexApiUrl}' -Method POST -Headers @{'Authorization'='Bearer ${accessToken}'; 'Content-Type'='application/json'} -Body '${jsonPayload.replaceAll('"', '\\"')}'"
                 """
-                }              
+            }              
         }
-        success 
-        {
+        success {
             echo 'Tests completed successfully.'
         }
-        failure 
-        {
+        failure {
             echo 'Tests failed! Check the reports for details.'
         }
     }
+
 }
