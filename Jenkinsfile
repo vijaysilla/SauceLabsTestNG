@@ -52,6 +52,27 @@ pipeline {
             archiveArtifacts artifacts: 'test-output/reports/sauce_HTMLReport1.html', allowEmptyArchive: true
             archiveArtifacts artifacts: 'test-output/reports/sauce_PDFReport1.pdf', allowEmptyArchive: true
             // cleanWs() // Clean workspace after everything else
+
+                script 
+                {
+                def webexApiUrl = "https://webexapis.com/v1/messages"
+                def accessToken = "YOUR_WEBEX_BOT_ACCESS_TOKEN"
+                def roomId = "YOUR_WEBEX_ROOM_ID"
+                def testReportUrl = "${env.BUILD_URL}/testReport"
+                def buildStatus = currentBuild.result ?: 'SUCCESS'
+                def testResult = buildStatus == 'FAILURE' ? 'Some tests failed.' : 'All tests passed.'
+
+                // Execute the cURL command using bat (Windows shell command)
+                bat """
+                curl -X POST "${webexApiUrl}" ^
+                  -H "Authorization: Bearer ${accessToken}" ^
+                  -H "Content-Type: application/json" ^
+                  -d "{
+                        \\"roomId\\": \\"${roomId}\\",
+                        \\"markdown\\": \\"**Test Execution Summary**\\\\nBuild: #${env.BUILD_NUMBER}\\\\nStatus: ${buildStatus}\\\\n${testResult}\\\\n[Test Report](${testReportUrl})\\"
+                      }"
+                """
+                }              
         }
         success {
             echo 'Tests completed successfully.'
