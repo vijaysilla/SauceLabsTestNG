@@ -63,9 +63,9 @@ pipeline {
                 def buildStatus = currentBuild.result ?: 'SUCCESS'
                 def testResult = buildStatus == 'FAILURE' ? 'Some tests failed.' : 'All tests passed.'
 
-                            // Create JSON payload
-            def jsonPayload = """
-            {
+                // Create JSON payload - POST request format sending to webex api
+                def jsonPayload = """
+                {
                     "roomId": "${roomId}",
                     "markdown": "**Test Execution Summary**\\nBuild: #${env.BUILD_NUMBER}\\nStatus: ${buildStatus}\\n${testResult}\\n[Test Report](${testReportUrl})"
                 }
