@@ -44,7 +44,8 @@ pipeline {
     }
 
     post {
-        always {
+        always 
+        {
             echo "Archiving test reports..."
             // junit 'test-output/junitreports/surefire-reports/*.xml'
             cucumber fileIncludePattern: 'target/cucumber.json'
@@ -62,22 +63,26 @@ pipeline {
                 def buildStatus = currentBuild.result ?: 'SUCCESS'
                 def testResult = buildStatus == 'FAILURE' ? 'Some tests failed.' : 'All tests passed.'
 
-                // Execute the cURL command using bat (Windows shell command)
+                            // Create JSON payload
+            def jsonPayload = """
+            {
+                    "roomId": "${roomId}",
+                    "markdown": "**Test Execution Summary**\\nBuild: #${env.BUILD_NUMBER}\\nStatus: ${buildStatus}\\n${testResult}\\n[Test Report](${testReportUrl})"
+                }
+                """
+    
+                // Use PowerShell to send the HTTP request
                 bat """
-                curl -X POST "${webexApiUrl}" ^
-                  -H "Authorization: Bearer ${accessToken}" ^
-                  -H "Content-Type: application/json" ^
-                  -d "{
-                        \\"roomId\\": \\"${roomId}\\",
-                        \\"markdown\\": \\"**Test Execution Summary**\\\\nBuild: #${env.BUILD_NUMBER}\\\\nStatus: ${buildStatus}\\\\n${testResult}\\\\n[Test Report](${testReportUrl})\\"
-                      }"
+                powershell -Command "Invoke-RestMethod -Uri '${webexApiUrl}' -Method POST -Headers @{'Authorization'='Bearer ${accessToken}'; 'Content-Type'='application/json'} -Body '${jsonPayload}'"
                 """
                 }              
         }
-        success {
+        success 
+        {
             echo 'Tests completed successfully.'
         }
-        failure {
+        failure 
+        {
             echo 'Tests failed! Check the reports for details.'
         }
     }
