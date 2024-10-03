@@ -71,9 +71,12 @@ pipeline {
                 }
                 """
     
+                // Escape quotes for PowerShell
+                def escapedJsonPayload = jsonPayload.replace('"', '\\"')
+    
                 // Use PowerShell to send the HTTP request
                 bat """
-                powershell -Command "Invoke-RestMethod -Uri '${webexApiUrl}' -Method POST -Headers @{'Authorization'='Bearer ${accessToken}'; 'Content-Type'='application/json'} -Body '${jsonPayload.replaceAll('"', '\\"')}'"
+                powershell -Command "Invoke-RestMethod -Uri '${webexApiUrl}' -Method POST -Headers @{'Authorization'='Bearer ${accessToken}'; 'Content-Type'='application/json'} -Body '${escapedJsonPayload}'"
                 """
             }              
         }
