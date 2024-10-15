@@ -39,16 +39,15 @@ pipeline {
             archiveArtifacts artifacts: 'test-output/reports/*/sauce_sparkReport.html', allowEmptyArchive: true
             archiveArtifacts artifacts: 'test-output/reports/*/sauce_HTMLReport.html', allowEmptyArchive: true
             archiveArtifacts artifacts: 'test-output/reports/*/sauce_PDFReport.pdf', allowEmptyArchive: true
-
+            
             script {
                 def webexApiUrl = "https://webexapis.com/v1/messages"
-                def accessToken = "OWQyZDQ0YjEtYzkyMC00NWNlLWFlY2EtZjk1MDg0OGM2MGQzOTVkMzJlODQtYTc0_P0A1_149711dc-58c8-4cd6-9e66-384c51eeff08"
-                def roomId = "Y2lzY29zcGFyazovL3VybjpURUFNOnVzLXdlc3QtMl9yL1JPT00vZDIyMDBhYTAtODE0MC0xMWVmLThlNjMtNzE1MGI4NzUxMjQ5"
+                def accessToken = "YOUR_ACCESS_TOKEN"
+                def roomId = "YOUR_ROOM_ID"
                 def testReportUrl = "${env.BUILD_URL}/testReport"
                 def buildStatus = currentBuild.result ?: 'SUCCESS'
                 def testResult = buildStatus == 'FAILURE' ? 'Some tests failed.' : 'All tests passed.'
 
-                // Create JSON payload
                 def jsonPayload = """
                 {
                     "roomId": "${roomId}",
@@ -56,17 +55,17 @@ pipeline {
                 }
                 """
 
-                // PowerShell command with proper JSON escaping
-                def command = """
-                powershell -Command "& {
-                    \$headers = @{ Authorization = 'Bearer ${accessToken}'; 'Content-Type' = 'application/json' }
-                    \$body = '${jsonPayload.replace("'", "''")}'
-                    Invoke-RestMethod -Uri '${webexApiUrl}' -Method POST -Headers \$headers -Body \$body
-                }"
-                """
+                powershell """
+                \$headers = @{
+                    Authorization = 'Bearer ${accessToken}'
+                    'Content-Type' = 'application/json'
+                }
                 
-                bat command
-            }
+                \$body = '${jsonPayload}'
+                
+                Invoke-RestMethod -Uri '${webexApiUrl}' -Method POST -Headers \$headers -Body \$body
+                """
+            }              
         }
 
         success {
