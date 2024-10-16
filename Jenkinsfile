@@ -45,7 +45,7 @@ pipeline {
                 def accessToken = "ZDVkZDRmN2UtYWQyYS00YmYzLTgwNTYtMmNlNWRlMjNkNjEyMTIzMmE4ZjItNDJm_P0A1_149711dc-58c8-4cd6-9e66-384c51eeff08"
                 def roomId = "d2200aa0-8140-11ef-8e63-7150b8751249"
                 // def testReportUrl = "${env.BUILD_URL}/testReport"
-                def testReportUrl = "${env.BUILD_URL}/test-output/reports/sauce_sparkReport.html"
+                def testReportUrl = "${env.BUILD_URL}artifacts/test-output/reports/*/sauce_sparkReport.html"
                 def buildStatus = currentBuild.result ?: 'SUCCESS'
                 def testResult = buildStatus == 'FAILURE' ? 'Some tests failed.' : 'All tests passed.'
 
