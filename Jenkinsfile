@@ -42,8 +42,8 @@ pipeline {
             
             script {
                 def webexApiUrl = "https://webexapis.com/v1/messages"
-                def accessToken = "OWQyZDQ0YjEtYzkyMC00NWNlLWFlY2EtZjk1MDg0OGM2MGQzOTVkMzJlODQtYTc0_P0A1_149711dc-58c8-4cd6-9e66-384c51eeff08"
-                def roomId = "Y2lzY29zcGFyazovL3VybjpURUFNOnVzLXdlc3QtMl9yL1JPT00vZDIyMDBhYTAtODE0MC0xMWVmLThlNjMtNzE1MGI4NzUxMjQ5"
+                def accessToken = "ZDVkZDRmN2UtYWQyYS00YmYzLTgwNTYtMmNlNWRlMjNkNjEyMTIzMmE4ZjItNDJm_P0A1_149711dc-58c8-4cd6-9e66-384c51eeff08"
+                def roomId = "d2200aa0-8140-11ef-8e63-7150b8751249"
                 def testReportUrl = "${env.BUILD_URL}/testReport"
                 def buildStatus = currentBuild.result ?: 'SUCCESS'
                 def testResult = buildStatus == 'FAILURE' ? 'Some tests failed.' : 'All tests passed.'
