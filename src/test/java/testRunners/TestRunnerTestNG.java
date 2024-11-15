@@ -12,7 +12,7 @@ import io.cucumber.testng.CucumberOptions;
 	glue = 		{"stepDefinitions","hooks"},
 	plugin = 	{"html:test-output/reports/htmlreport.html", "json:test-output/reports/suaceProject.json",
 				 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
-				 "pretty", "json:target/cucumber.json"
+				 // "pretty", "json:target/cucumber.json"
 			 	}
 )
 
