@@ -11,8 +11,8 @@ import io.cucumber.testng.CucumberOptions;
 	features= 	{"src/test/java/features"},
 	glue = 		{"stepDefinitions","hooks"},
 	plugin = 	{"html:test-output/reports/htmlreport.html", "json:test-output/reports/suaceProject.json",
-				 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
-				 // "pretty", "json:target/cucumber.json"
+				 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+				 "pretty", "json:target/cucumber.json"
 			 	}
 )
 
