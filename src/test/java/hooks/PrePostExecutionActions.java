@@ -34,8 +34,12 @@ public class PrePostExecutionActions
 	public void tearDown()
 	{
 		Log4jLoggers.getLogInstance().endTestCase();
-		if (testContext.getWebDriverManagerObject().getWebDriver() != null)
+		if (testContext.getWebDriverManagerObject().getWebDriver() != null)		
 			testContext.getWebDriverManagerObject().getWebDriver().close();
+		if (testContext.getFilloExcelUtility().conn != null)
+				testContext.getFilloExcelUtility().conn.close();
+		if (testContext.getFilloExcelUtility().rs != null)
+				testContext.getFilloExcelUtility().rs.close();		
 	}
 	
 }

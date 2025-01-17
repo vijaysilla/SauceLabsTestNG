@@ -1,0 +1,3 @@
+extractSingleCondBySNO: "SELECT {extract_cols} from {sheet_name} where SNO='{cond_val}'"
+extractSNOByUname: "SELECT SNO from {sheet_name} where Username = '{cond_val}'"
+updateResultsBySNO: "UPDATE {sheet_name} SET Result='{blank}' where SNO = '{cond_val}'"

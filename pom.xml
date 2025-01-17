@@ -14,7 +14,7 @@
 		<dependency>
 		    <groupId>io.cucumber</groupId>
 		    <artifactId>cucumber-testng</artifactId>
-		    <version>7.18.1</version>
+		    <version>7.20.1</version>
 		</dependency>
 		<!--
 		https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
@@ -83,7 +83,7 @@
 		<dependency>
 		    <groupId>com.aventstack</groupId>
 		    <artifactId>extentreports</artifactId>
-    		<version>5.0.9</version> <!-- Check for the latest version -->
+    		<version>5.1.2</version> <!-- Check for the latest version -->
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber6-adapter -->
@@ -134,8 +134,42 @@
 		    <version>1.18.34</version>
 		    <scope>provided</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
+		<dependency>
+		    <groupId>org.yaml</groupId>
+		    <artifactId>snakeyaml</artifactId>
+		    <version>2.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.codoid.products/fillo -->
+		<dependency>
+		    <groupId>com.codoid.products</groupId>
+		    <artifactId>fillo</artifactId>
+		    <version>1.23</version>
+		</dependency>
 
 	</dependencies>
+
+
+	<profiles>
+        <profile>
+            <id>INT</id>
+            <properties>
+                <environment>INT</environment>
+                <browser>chrome</browser>
+            </properties>
+        </profile>
+
+
+        <profile>
+            <id>sys</id>
+            <properties>
+                <environment>SYS</environment>
+                <browser>firefox</browser>
+            </properties>
+        </profile>
+    </profiles>
+    
+
 	  <build>
 	    <plugins>
 	      <plugin>

@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class SwagLabsHomePage 
 {
@@ -29,6 +30,12 @@ public class SwagLabsHomePage
 	@FindBy(xpath="//div[@class='inventory_item_price']")
 	private List<WebElement> bagItemsCosts;
 	
+	@FindBy(id="react-burger-menu-btn")
+	private WebElement menuButton;
+	
+	@FindBy(id="logout_sidebar_link")
+	private WebElement logoutLink;
+	
 	private By item1_CartButton;
 	private By itemCost;
 	
@@ -37,6 +44,7 @@ public class SwagLabsHomePage
 	public SwagLabsHomePage(WebDriver driver)
 	{
 		this.driver = driver;
+		PageFactory.initElements(this.driver, this);
 	}
 	
 	public boolean verifyShoppingPageExistence()
@@ -92,5 +100,13 @@ public class SwagLabsHomePage
 	{
 //		bagItemsCosts = By.xpath("//div[@class='inventory_item_price']/text()[2]");
 		return bagItemsCosts;
+	}
+	public void clickThreeLinesMenuButton()
+	{
+		menuButton.click();
+	}
+	public void clickLogoutLink()
+	{
+		logoutLink.click();
 	}
 }

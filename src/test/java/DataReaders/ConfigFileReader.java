@@ -3,6 +3,7 @@ package DataReaders;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -12,6 +13,7 @@ public class ConfigFileReader
 	private static final Properties prop = new Properties();
 	private static final String confFilePath  = System.getProperty("user.dir")+"\\src\\test\\resources\\config.properties";
 	private static ConfigFileReader instance ;
+	private String user = System.getProperty("user.dir");
 	
 	// use private constructor to prevent object creation to this class
 	private ConfigFileReader()
@@ -77,6 +79,31 @@ public class ConfigFileReader
 			return browserConfig;
 		else
 			throw new RuntimeException("browser  is not defined in config file at path "+confFilePath);		
+	}
+	public String getTestDataPath()
+	{
+		String testdataPath = prop.getProperty("testdata_path");
+		if (testdataPath != null)		
+			return testdataPath;
+		else
+			throw new RuntimeException("test data path is not defined in config file at path "+confFilePath);		
+	}
+	public String getCredsDataPath()
+	{
+		String relativePath = prop.getProperty("credsDataPath");
+		if (relativePath != null)
+			return Paths.get(user, relativePath).toString();		
+		else
+			throw new RuntimeException("Credentials test data path is not defined in config file at path -"+confFilePath);			
+	}
+	public String getQueriesPath()
+	{
+		String relativePath = prop.getProperty("queriesPath");		
+		if (relativePath != null)
+//			return queriesPath;
+			return Paths.get(user, relativePath).toString();
+		else
+			throw new RuntimeException("queries yaml file path is not defined in config file at path - "+confFilePath);
 	}
 	public Map getBrowserOptions()
 	{

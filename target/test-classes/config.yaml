@@ -1,0 +1,18 @@
+chrome:
+  headless: false
+  incognito: true
+  disablenotifications: true
+  SSLdisable: true
+  experimentoptions:
+    downloadsfolder: mydownloads
+    downloadpopupsdisable: true
+
+ 
+firefox:
+  headless: false
+  incognito: true
+  
+  SSLdisable: true
+  experimentoptions:
+    downloadsfolder: downloads
+    downloadpopupsdisable: true

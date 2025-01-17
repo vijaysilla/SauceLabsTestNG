@@ -1,15 +1,20 @@
 package managers;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.management.RuntimeErrorException;
 
+import org.apache.commons.collections4.bag.SynchronizedSortedBag;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.chromium.ChromiumOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.yaml.snakeyaml.Yaml;
 
 import DataReaders.ConfigFileReader;
 
@@ -63,7 +68,8 @@ public class WebDriverManager
 	public void createLocalWebDriver()
 	{
 		Object options;
-		options = createBrowserOptions();
+//		options = createBrowserOptions();     // using config.properties
+		options = createBrowserOptionYAML();   // using config.yaml
 		if (options instanceof ChromeOptions)
 		{
 			driver = new ChromeDriver((ChromeOptions)options);
@@ -79,7 +85,97 @@ public class WebDriverManager
 
 		
 	}
+	public Object getChromeOptions(Map<String, Object> configYaml)
+	{		
+		Map<String, Object> prefs = new HashMap<String, Object>();		
+		Map<String, Object> chromeConfig = (Map<String, Object>) configYaml.get("chrome");
+		Map<String, Object> experimentalChrome  = (Map<String, Object>) chromeConfig.get("experimentoptions");
+		for(String key:configYaml.keySet())
+		{
+			if (key=="headless")
+			{
+				chromeoptions.addArguments("--headless");					
+			}	
+			if (key == "incognito") 
+			{
+				chromeoptions.addArguments("--incognito");
+			}
+			if (key == "disablenotifications")
+			{
+				chromeoptions.addArguments("--disable-notifications");
+			}
+			if (key == "SSLdisable")
+			{
+				chromeoptions.addArguments("--allow-insecure-localhost");
+			}		
+		}
+		for(String myKey:experimentalChrome.keySet())
+		{
+			if (myKey == "downloadsfolder" && myKey!= null)
+			{
+				String downloadPath = System.getProperty("user.dir")+"\\"+experimentalChrome.get("downloadsfolder");
+				prefs.put("download.default_directory", downloadPath);
+			}
+			if (myKey == "downloadpopupsdisable")
+			{
+				prefs.put("download.download_for_prompts", false);
+			}	
+		}
+		chromeoptions.setExperimentalOption("prefs", prefs);
+		return chromeoptions;
+	}
 	
+	public Object getFirefoxOptions(Map<String, Object> configYaml)
+	{
+
+		Map<String, Object> prefs = new HashMap<String, Object>();		
+		Map<String, Object> firefoxConfig  = (Map<String, Object>) configYaml.get("firefox");
+		Map<String, Object> experimentalFirefox = (Map<String, Object>) firefoxConfig.get("experimentoptions");
+		for(String key:configYaml.keySet())
+		{
+			//write code
+		}
+		for(String myKey:experimentalFirefox.keySet())
+		{
+			//write code
+		}
+		
+		return firefoxoptions;
+	}
+	
+	public Object createBrowserOptionYAML()
+	{
+		String filePath = System.getProperty("user.dir")+"\\src\\test\\resources\\config.yaml";
+		Object options = null;
+		Map<String, Object> configYaml=null;
+		Map<String, Object> chromeConfig = null;
+		Map<String, Object> experimentalOptions = null;
+		Map<String, Object> prefs = new HashMap<String,Object>();
+		Yaml yamlFile = new Yaml();
+		try 
+		{
+			FileReader yamlConfigFile = new FileReader(filePath);
+			configYaml = yamlFile.load(yamlConfigFile);
+//			chromeConfig = (Map<String, Object>) configYaml.get(browser_type);
+//			experimentalOptions = (Map<String, Object>) chromeConfig.get("experimentoptions");
+		} 
+		catch (FileNotFoundException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (browser_type.equalsIgnoreCase("chrome"))
+		{
+			return getChromeOptions(configYaml);		
+		}
+		else if (browser_type.equalsIgnoreCase("firefox"))
+		{
+			return getFirefoxOptions(configYaml);	
+		}	
+		else
+			throw new RuntimeException("browser options are not defined because of browser type is not correctly defined...");
+		
+	}
 	public Object createBrowserOptions()
 	{
 		Map <String, Object> prefs = new HashMap<>();
