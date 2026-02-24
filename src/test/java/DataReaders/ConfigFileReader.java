@@ -3,6 +3,7 @@ package DataReaders;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +12,9 @@ import java.util.Properties;
 public class ConfigFileReader
 {
 	private static final Properties prop = new Properties();
-	private static final String confFilePath  = System.getProperty("user.dir")+"\\src\\test\\resources\\config.properties";
+//	private static final String confFilePath  = System.getProperty("user.dir")+"\\src\\test\\resources\\config.properties";
+	private static final String confFilePath  = ConfigFileReader.class.getResource("/config.properties").getPath();
+	private InputStream input ;
 	private static ConfigFileReader instance ;
 	private String user = System.getProperty("user.dir");
 	
@@ -38,22 +41,26 @@ public class ConfigFileReader
 //		confFilePath = System.getProperty("user.dir")+"\\src\\test\\resources\\config.properties";
 		try 
 		{
-			FileReader file = new FileReader(confFilePath);
-			try 
-			{
-				
-				prop.load(file);
-			} 
-			catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			input = ConfigFileReader.class.getClassLoader().getResourceAsStream("config.properties");
+//			FileReader file = new FileReader(confFilePath);
+
+				if (input == null)
+				{
+					throw new FileNotFoundException("config.properties file not exist under resource folder");
+				}
+				prop.load(input);
 		} 
 		catch (FileNotFoundException e) 
 		{					
 			e.printStackTrace();
 			throw new RuntimeException("config.properties not found at path "+confFilePath);
-		}		
+		}	
+
+		catch (IOException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public String getUrl() 
 	{

@@ -8,7 +8,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions
 (
 	monochrome=true,
-	features= 	{"src/test/java/features"},
+	features= 	{"classpath:features"},
 	glue = 		{"stepDefinitions","hooks"},
 	plugin = 	{"html:test-output/reports/htmlreport.html", "json:test-output/reports/suaceProject.json",
 				 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",

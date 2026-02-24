@@ -1,0 +1,6 @@
+target/
+target-output/
+*.log
+.settings/
+.classpath
+.project

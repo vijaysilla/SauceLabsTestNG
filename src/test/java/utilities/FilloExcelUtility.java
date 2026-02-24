@@ -31,6 +31,7 @@ public class FilloExcelUtility
 	public Recordset rs;
 	Yaml yaml = new Yaml();
 	
+	
 	public void excelGetConnection(String dataFileName, String sheetName) 
 	{
 		this.dataFileName = dataFileName;
@@ -49,7 +50,8 @@ public class FilloExcelUtility
 			if (this.flQueries.exists())
 			{
 				this.queriesFIS = new FileInputStream(flQueries);
-				this.queries = yaml.load(queriesFIS);
+				this.queries = yaml.load(queriesFIS);			
+				
 			}
 			else
 				throw new FileNotFoundException("Queries yaml file is not found check config.properties file");

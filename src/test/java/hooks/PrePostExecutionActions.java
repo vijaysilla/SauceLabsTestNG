@@ -17,12 +17,14 @@ public class PrePostExecutionActions
 	@Before
 	public void preExecutionSetup(Scenario scenario)
 	{
+		scenario.log("execution started");
 		Log4jLoggers.getLogInstance().startTestCase(scenario.getName());
 	}
 	
 	@After(order=1)
 	public void evidenceCapture(Scenario scenario)
 	{
+		scenario.log("execution ended");
 		if (scenario.isFailed())
 		{
 			GenericActions.CaptureScreenShot(testContext.getWebDriverManagerObject().getWebDriver(), scenario.getName(), scenario);
@@ -32,7 +34,7 @@ public class PrePostExecutionActions
 	
 	@After(order=0)
 	public void tearDown()
-	{
+	{		
 		Log4jLoggers.getLogInstance().endTestCase();
 		if (testContext.getWebDriverManagerObject().getWebDriver() != null)		
 			testContext.getWebDriverManagerObject().getWebDriver().close();
