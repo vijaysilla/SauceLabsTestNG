@@ -1,0 +1,9 @@
+utilities\Log4jLoggers.class
+utilities\TestContext.class
+managers\PagesManager.class
+stepDefinitions\shoppingCart.class
+managers\FileManager.class
+utilities\FilloExcelUtility.class
+pageObjects\SwagLabsHomePage.class
+pageObjects\LoginPage.class
+managers\WebDriverManager.class

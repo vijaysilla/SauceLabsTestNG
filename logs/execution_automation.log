@@ -1,19 +1,7 @@
-2025-01-07 11:35:09 [main] INFO  Log4jLoggers:23 - ********************************************************************************************
-2025-01-07 11:35:09 [main] INFO  Log4jLoggers:24 - ************************* Login page validation with valid credentials list ********************************************
-2025-01-07 11:35:09 [main] INFO  Log4jLoggers:25 - ********************************-S-T-A-R-T**************************************************
-2025-01-07 11:35:10 [main] DEBUG PackageRelationshipCollection:307 - Parsing relationship: /xl/_rels/workbook.xml.rels
-2025-01-07 11:35:10 [main] DEBUG PackageRelationshipCollection:307 - Parsing relationship: /_rels/.rels
-2025-01-07 11:35:18 [main] DEBUG ZipPackage:607 - Save content types part
-2025-01-07 11:35:18 [main] DEBUG ZipPackage:611 - Save package relationships
-2025-01-07 11:35:18 [main] DEBUG ZipPackage:625 - Save part 'docProps/app.xml'
-2025-01-07 11:35:18 [main] DEBUG ZipPackage:625 - Save part 'docProps/core.xml'
-2025-01-07 11:35:18 [main] DEBUG ZipPackage:625 - Save part 'xl/sharedStrings.xml'
-2025-01-07 11:35:18 [main] DEBUG ZipPackage:625 - Save part 'xl/styles.xml'
-2025-01-07 11:35:18 [main] DEBUG ZipPackage:625 - Save part 'xl/theme/theme1.xml'
-2025-01-07 11:35:18 [main] DEBUG ZipPackage:625 - Save part 'xl/workbook.xml'
-2025-01-07 11:35:18 [main] DEBUG ZipPackage:625 - Save part 'xl/worksheets/sheet1.xml'
-2025-01-07 11:35:18 [main] DEBUG PackageRelationshipCollection:307 - Parsing relationship: /xl/_rels/workbook.xml.rels
-2025-01-07 11:35:18 [main] DEBUG PackageRelationshipCollection:307 - Parsing relationship: /_rels/.rels
-2025-01-07 11:35:24 [main] INFO  Log4jLoggers:34 - Login page validation with valid credentials list - failed and captured screen shot at screenshots folder
-2025-01-07 11:35:24 [main] INFO  Log4jLoggers:29 - ********************************************************************************************
-2025-01-07 11:35:24 [main] INFO  Log4jLoggers:30 - **********************************-E-N-D-***************************************************
+2026-02-28 17:26:34 [main] INFO  Log4jLoggers:23 - ********************************************************************************************
+2026-02-28 17:26:34 [main] INFO  Log4jLoggers:24 - ************************* Login page validation with valid credentials list ********************************************
+2026-02-28 17:26:34 [main] INFO  Log4jLoggers:25 - ********************************-S-T-A-R-T**************************************************
+2026-02-28 17:26:49 [main] INFO  Log4jLoggers:34 - Login page validation with valid credentials list - failed and captured screen shot at screenshots folder
+2026-02-28 17:26:50 [main] INFO  Log4jLoggers:34 - Login page validation with valid credentials list - failed and captured screen shot at screenshots folder
+2026-02-28 17:26:50 [main] INFO  Log4jLoggers:29 - ********************************************************************************************
+2026-02-28 17:26:50 [main] INFO  Log4jLoggers:30 - **********************************-E-N-D-***************************************************

@@ -20,7 +20,15 @@ public class PrePostExecutionActions
 		scenario.log("execution started");
 		Log4jLoggers.getLogInstance().startTestCase(scenario.getName());
 	}
-	
+	@AfterStep()
+	public void evidenceCaptureAfterStep(Scenario scenario)
+	{
+		if (scenario.isFailed())
+		{
+			GenericActions.CaptureScreenShot(testContext.getWebDriverManagerObject().getWebDriver(), scenario.getName(), scenario);
+			Log4jLoggers.getLogInstance().info(scenario.getName()+" - failed and captured screen shot at screenshots folder");
+		}
+	}
 	@After(order=1)
 	public void evidenceCapture(Scenario scenario)
 	{

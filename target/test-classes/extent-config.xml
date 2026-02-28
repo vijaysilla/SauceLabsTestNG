@@ -7,7 +7,12 @@
 
 		<theme>dark</theme>
 		<!-- document encoding -->
-
+	    <styles>
+	        .log { 
+	            font-family: 'Arial', sans-serif; /* Change font family */
+	            font-size: 14px; /* Change font size */
+	        	 }
+	    </styles>
 		<!-- defaults to UTF-8 -->
 
 		<encoding>UTF-8</encoding>

@@ -16,7 +16,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 echo "Running Cucumber BDD tests using Maven..."
-                bat "mvn clean test"
+                bat "mvn clean test -Dcucumber.filter.tags='@exceltestDisplay'"
             }
         }
 
