@@ -13,6 +13,7 @@ public class ExcelDataDisplay
 	public void extract_test_data_which_was_read_from_excel_earlier() 
 	{
 		System.out.println("extract test data which was read from excel earlier");
+		System.out.println(System.getProperty("tags"));
 	}
 
 	@Then("Display read values from test data file")
