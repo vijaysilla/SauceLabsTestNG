@@ -14,7 +14,7 @@ import io.cucumber.testng.CucumberOptions;
 				 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
 				 "pretty", "json:target/cucumber.json"
 			 	},
-	tags = "@exceltest"
+	tags = ""
 	
 )
 
