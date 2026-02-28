@@ -43,7 +43,10 @@ pipeline {
             archiveArtifacts artifacts: 'test-output/reports/*/sauce_sparkReport.html', allowEmptyArchive: true
             archiveArtifacts artifacts: 'test-output/reports/*/sauce_HTMLReport.html', allowEmptyArchive: true
             archiveArtifacts artifacts: 'test-output/reports/*/sauce_PDFReport.pdf', allowEmptyArchive: true
-
+       
+            }   
+                  
+        }
 	 
         success {
             echo 'Tests completed successfully.'
