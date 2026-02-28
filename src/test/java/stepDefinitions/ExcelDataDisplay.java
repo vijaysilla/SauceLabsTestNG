@@ -13,13 +13,14 @@ public class ExcelDataDisplay
 	public void extract_test_data_which_was_read_from_excel_earlier() 
 	{
 		System.out.println("extract test data which was read from excel earlier");
-		System.out.printf("Tags given in jenkins pipeline - %s",System.getProperty("tags"));
+		System.out.printf("Tags given in jenkins pipeline - %s",System.getProperty("cucumber.filter.tags"));
 	}
 
 	@Then("Display read values from test data file")
 	public void display_read_values_from_test_data_file() 
 	{
 		System.out.println("Display read values from test data file");
+		System.out.printf("Tags given in jenkins pipeline - %s",System.getProperty("cucumber.filter.tags"));
 	}
 
 }
