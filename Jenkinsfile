@@ -66,10 +66,5 @@ pipeline
         {
             echo 'Tests failed! Check the reports for details.'
         }
-<<<<<<< HEAD
      }
 }
-=======
-	}
-}
->>>>>>> 1522c1e829936a0bc2132dcd8c5190d6664ac558
