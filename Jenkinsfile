@@ -20,6 +20,9 @@ pipeline
             {
                 echo "Checking out the repository..."
                 git branch: 'main', url: 'https://github.com/vijaysilla/SauceLabsTestNG.git'
+				bat "echo mvn clean test -Dcucumber.filter.tags=${params.TAGS}"
+                bat "echo \'${params.TAGS}'"
+                bat "echo \"${params.TAGS}\""				
             }
         }
 
@@ -30,9 +33,12 @@ pipeline
                 echo "Running Cucumber BDD tests using Maven..."
                 //bat "mvn clean test -Dcucumber.filter.tags='@exceltestDisplay'"
                 bat "mvn clean test -Dcucumber.filter.tags=\"${params.TAGS}\""
+<<<<<<< HEAD
                 bat "echo mvn clean test -Dcucumber.filter.tags=\'${params.TAGS}'"
                 bat "echo \'${params.TAGS}'"
                 bat "echo \"${params.TAGS}\""
+=======
+>>>>>>> 4c23dbf0ea130539348747e236992fc170b3352d
             }
         }	
 
@@ -71,4 +77,8 @@ pipeline
             echo 'Tests failed! Check the reports for details.'
         }
      }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 4c23dbf0ea130539348747e236992fc170b3352d
