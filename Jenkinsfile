@@ -19,7 +19,7 @@ pipeline
             {
                 echo "Checking out the repository..."
                 git branch: 'main', url: 'https://github.com/vijaysilla/SauceLabsTestNG.git'
-				bat "echo mvn clean test -Dcucumber.filter.tags=\'${params.TAGS}'"
+				bat "echo mvn clean test -Dcucumber.filter.tags=${params.TAGS}"
                 bat "echo \'${params.TAGS}'"
                 bat "echo \"${params.TAGS}\""				
             }
