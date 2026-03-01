@@ -19,6 +19,8 @@ pipeline
             {
                 echo "Checking out the repository..."
                 git branch: 'main', url: 'https://github.com/vijaysilla/SauceLabsTestNG.git'
+                bat "echo \'${params.TAGS}'"
+                bat "echo \"${params.TAGS}\""				
             }
         }
 
