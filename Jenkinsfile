@@ -8,7 +8,8 @@ pipeline
     }
 	parameters 
 	{
-	    string(name:'TAGS', defaultValue: '@exceltestDisplay', description:'my executions through jenkins file')	    
+	    string(name:'TAGS', defaultValue: '@exceltestDisplay', description:'my executions through jenkins file')  
+	    string(name:'TAGS', defaultValue: '@exceltest', description:'my executions through jenkins file')     
 	}
 
     stages 
@@ -28,9 +29,12 @@ pipeline
             {
                 echo "Running Cucumber BDD tests using Maven..."
                 //bat "mvn clean test -Dcucumber.filter.tags='@exceltestDisplay'"
-                bat "mvn clean test -Dcucumber.filter.tags=\'${params.TAGS}'"
+                bat "mvn clean test -Dcucumber.filter.tags=\"${params.TAGS}\""
+                bat "echo mvn clean test -Dcucumber.filter.tags=\'${params.TAGS}'"
+                bat "echo \'${params.TAGS}'"
+                bat "echo \"${params.TAGS}\""
             }
-        }
+        }	
 
         stage('Publish Extent Reports') 
         {
@@ -66,10 +70,5 @@ pipeline
         {
             echo 'Tests failed! Check the reports for details.'
         }
-<<<<<<< HEAD
      }
 }
-=======
-	}
-}
->>>>>>> 1522c1e829936a0bc2132dcd8c5190d6664ac558
