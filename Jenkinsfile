@@ -31,7 +31,7 @@ pipeline
             {
                 echo "Running Cucumber BDD tests using Maven..."
                 //bat "mvn clean test -Dcucumber.filter.tags='@exceltestDisplay'"
-                bat "mvn clean test -Dcucumber.filter.tags=\'${params.TAGS}'"
+                bat "mvn clean test -Dcucumber.filter.tags=\"${params.TAGS}\""
             }
         }
 
