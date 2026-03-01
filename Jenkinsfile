@@ -66,4 +66,5 @@ pipeline
         {
             echo 'Tests failed! Check the reports for details.'
         }
+	}
 }
