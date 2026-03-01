@@ -76,8 +76,4 @@ pipeline
             echo 'Tests failed! Check the reports for details.'
         }
      }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> ef95fa07324e33782f51cae8a6f52ed6181aae30
