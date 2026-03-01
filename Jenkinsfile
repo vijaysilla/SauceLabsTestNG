@@ -1,4 +1,5 @@
-pipeline {
+pipeline 
+{
     agent any
 
     tools 
@@ -7,7 +8,7 @@ pipeline {
     }
 	parameters 
 	{
-	    string(name:'TAGS', defaultvalue: '@exceltestDisplay', description:'my executions through jenkins file')	    
+	    string(name:'TAGS', defaultValue: '@exceltestDisplay', description:'my executions through jenkins file')	    
 	}
 
     stages 
@@ -66,4 +67,3 @@ pipeline {
             echo 'Tests failed! Check the reports for details.'
         }
 }
-
