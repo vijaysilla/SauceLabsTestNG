@@ -1,31 +1,40 @@
 pipeline {
     agent any
 
-    tools {
+    tools 
+    {
         maven "M3" // Ensure this matches your Maven tool installation in Jenkins
     }
-	parameters {
+	parameters 
+	{
 	    string(name:'TAGS', defaultvalue: '@exceltestDisplay', description:'my executions through jenkins file')	    
 	}
 
-    stages {
-        stage('Checkout') {
-            steps {
+    stages 
+    {
+        stage('Checkout') 
+        {
+            steps 
+            {
                 echo "Checking out the repository..."
                 git branch: 'main', url: 'https://github.com/vijaysilla/SauceLabsTestNG.git'
             }
         }
 
-        stage('Run Tests') {
-            steps {
+        stage('Run Tests') 
+        {
+            steps 
+            {
                 echo "Running Cucumber BDD tests using Maven..."
                 //bat "mvn clean test -Dcucumber.filter.tags='@exceltestDisplay'"
                 bat "mvn clean test -Dcucumber.filter.tags='${params.TAGS}'"
             }
         }
 
-        stage('Publish Extent Reports') {
-            steps {
+        stage('Publish Extent Reports') 
+        {
+            steps 
+            {
                 publishHTML([allowMissing: false, 
                     alwaysLinkToLastBuild: true, 
                     keepAll: true, 
@@ -36,24 +45,25 @@ pipeline {
         }
     }
 
-    post {
-        always {
+    post 
+    {
+        always 
+        {
             echo "Archiving test reports..."
             cucumber fileIncludePattern: 'target/cucumber.json'
             archiveArtifacts artifacts: 'test-output/reports/*/sauce_sparkReport.html', allowEmptyArchive: true
             archiveArtifacts artifacts: 'test-output/reports/*/sauce_HTMLReport.html', allowEmptyArchive: true
-            archiveArtifacts artifacts: 'test-output/reports/*/sauce_PDFReport.pdf', allowEmptyArchive: true
-       
-            }   
-                  
+            archiveArtifacts artifacts: 'test-output/reports/*/sauce_PDFReport.pdf', allowEmptyArchive: true  
         }
 	 
-        success {
+        success 
+        {
             echo 'Tests completed successfully.'
         }
 
-        failure {
+        failure 
+        {
             echo 'Tests failed! Check the reports for details.'
         }
-    }
 }
+
